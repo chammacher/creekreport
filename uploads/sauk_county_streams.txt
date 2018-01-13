@@ -1,0 +1,45 @@
+Bear Creek	Bear Creek	8.21	18.25	CLASS II	Richland,Sauk	Map Link
+Bear Creek	Bear Creek	18.25	26.78	CLASS II	Sauk	Map Link
+Beaver Creek	Beaver Creek	0.00	2.37	CLASS II	Sauk	Map Link
+Biser Creek	Biser Creek	0.00	3.86	CLASS I	Sauk	Map Link
+Boulder Creek	Boulder Creek	0.00	3.22	CLASS I	Sauk	Map Link
+Camels Creek	Camels Creek	0.00	1.86	CLASS II	Sauk	Map Link
+Camels Creek	Camels Creek	1.87	3.85	CLASS II	Sauk	Map Link
+Cazenovia Br	Cazenovia Branch	2.67	7.68	CLASS I	Richland,Sauk	Map Link
+Croal Creek	Kroal Creek	0.00	3.82	CLASS II	Sauk	Map Link
+Dell Creek	Dell Creek	7.55	15.82	CLASS II	Sauk	Map Link
+Dell Creek	Dell Creek	15.82	19.25	CLASS II	Juneau,Sauk	Map Link
+Harrison Creek	Harrison Creek	0.00	3.60	CLASS II	Sauk	Map Link
+Harrison Creek	Harrison Creek	3.60	4.51	CLASS II	Sauk	Map Link
+Hay Creek	Hay Creek	0.00	5.42	CLASS II	Sauk	Map Link
+Hay Creek	Hay Creek	5.42	7.37	CLASS II	Sauk	Map Link
+Honey Creek	Honey Creek	25.54	30.46	CLASS II	Sauk	Map Link
+Hulburt Creek	Hulbert Creek	0.00	1.55	CLASS II	Sauk	Map Link
+Hulburt Creek	Hulburt Creek	1.55	3.40	CLASS I	Sauk	Map Link
+Hulburt Creek	Hulburt Creek	3.40	6.51	CLASS I	Sauk	Map Link
+Leech Creek	Leech Creek	4.42	7.82	CLASS II	Sauk	Map Link
+Leech Creek	Leech Creek	7.82	8.67	CLASS II	Sauk	Map Link
+Leech Creek	Leech Creek	8.67	11.48	CLASS II	Sauk	Map Link
+Little Baraboo River	Little Baraboo River	11.93	16.78	CLASS II	Sauk	Map Link
+Manley Creek	Manley Creek	0.00	3.05	CLASS I	Sauk	Map Link
+Marble Creek	Marble Creek	0.00	3.51	CLASS II	Sauk	Map Link
+McCarville Creek	Mccarville Creek	0.00	3.10	CLASS II	Sauk	Map Link
+McCarville Creek	Mccarville Creek	3.10	4.74	CLASS II	Sauk	Map Link
+Mortimer Valley Creek	Mortimer Valley Creek	0.00	2.55	CLASS II	Sauk	Map Link
+North Branch Honey Creek	North Br Honey Creek	9.27	13.03	CLASS II	Sauk	Map Link
+North Branch Honey Creek	North Br Honey Creek	13.03	15.77	CLASS II	Sauk	Map Link
+Otter Creek	Otter Creek	17.17	18.81	CLASS I	Sauk	Map Link
+Otter Creek	Otter Creek	18.81	20.23	CLASS I	Sauk	Map Link
+Parfreys Glen Creek	Parfrey's Glen Creek	0.00	3.91	CLASS I	Sauk	Map Link
+Parfreys Glen Creek	Parfrey's Glen Creek	3.91	5.98	CLASS I	Sauk	Map Link
+Rowley Creek	Rowley Creek	0.00	3.47	CLASS I	Sauk,Columbia	Map Link
+Seeley Creek	Seeley Creek	13.12	15.90	CLASS II	Sauk	Map Link
+Seeley Creek	Seeley Creek	15.90	21.05	CLASS I	Sauk	Map Link
+Smith Hollow Creek	Smith Hollow Creek	3.38	5.07	CLASS II	Sauk	Map Link
+Unnamed	Creek 1-3	0.00	0.57	CLASS I	Sauk	Map Link
+Unnamed	Creek 36-9	0.00	0.95	CLASS I	Sauk	Map Link
+Unnamed	Creek 6-7	0.00	0.27	CLASS I	Sauk	Map Link
+Unnamed	Creek 6-9	0.00	1.32	CLASS I	Sauk	Map Link
+Unnamed	Local Water	0.91	3.44	CLASS I	Sauk	Map Link
+Unnamed	Otter Creek	0.00	1.13	CLASS I	Sauk	Map Link
+Willow Creek	Willow Creek	24.82	27.10	CLASS I	Richland,Sauk	Map Link

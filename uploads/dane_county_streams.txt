@@ -1,0 +1,42 @@
+Badger Mill Creek	Badger Mill Creek	0.00	2.00	CLASS II	Dane	Map Link
+Badger Mill Creek	Badger Mill Creek	2.00	5.00	CLASS II	Dane	Map Link
+Black Earth Creek	Black Earch Creek	6.95	11.08	CLASS I	Dane	Map Link
+Black Earth Creek	Black Earth Creek	11.08	16.83	CLASS I	Dane	Map Link
+Black Earth Creek	Black Earth Creek	16.83	19.35	CLASS I	Dane	Map Link
+Black Earth Creek	Black Earth Creek	19.35	23.95	CLASS I	Dane	Map Link
+Black Earth Creek	Black Earth Creek	23.95	27.08	CLASS I	Dane	Map Link
+Bohn Creek	Bohn Creek	0.00	2.00	CLASS II	Dane	Map Link
+Bohn Creek	Bohn Creek	2.00	3.45	CLASS II	Dane	Map Link
+Deer Creek	Deer Creek	0.00	4.68	CLASS II	Dane	Map Link
+Dunlap Creek	Dunlap Creek	6.07	10.03	CLASS II	Dane	Map Link
+East Branch Blue Mounds Creek	Bohn Creek	0.00	1.16	CLASS II	Dane,Iowa	Map Link
+East Branch Blue Mounds Creek	Bohn Creek	1.16	5.12	CLASS II	Dane	Map Link
+Elvers Creek	Elvers Creek (Bohn Cr.)	0.00	10.06	CLASS II	Dane	Map Link
+Flynn Creek	Flynn Creek	0.00	4.60	CLASS II	Dane	Map Link
+Fryes Feeder	Fryes Feeder	0.00	2.03	CLASS II	Dane	Map Link
+Garfoot Creek	Garfoot Creek	0.00	4.34	CLASS II	Dane	Map Link
+German Valley Br	German Valley Branch	0.00	7.63	CLASS II	Dane	Map Link
+Gordon Creek	Big Spring Creek	14.22	22.42	CLASS II	Dane	Map Link
+Henry Creek	Henry Creek	0.00	0.98	CLASS II	Dane	Map Link
+Kittleson Valley Creek	Kittleson Valley Creek	2.79	6.70	CLASS II	Dane	Map Link
+Kittleson Valley Creek	Kittleson Valley Creek	6.70	12.76	CLASS II	Dane	Map Link
+Moen Creek	Moen Creek	0.01	1.63	CLASS II	Dane	Map Link
+Mt Vernon Creek	Mt. Vernon Creek	0.00	3.47	CLASS I	Dane	Map Link
+Mt Vernon Creek	Mt. Vernon Creek	3.47	5.90	CLASS I	Dane	Map Link
+Pleasant Valley Br	Pleasant Valley Branch	0.00	5.92	CLASS II	Dane	Map Link
+Primrose Br	Primrose Branch	0.00	6.29	CLASS II	Dane	Map Link
+Rutland Br	Anthony Branch	0.00	2.59	CLASS II	Dane	Map Link
+Ryan Creek	Ryan Creek	0.00	6.44	CLASS II	Dane	Map Link
+Spring Creek	Lodi Creek	8.27	11.88	CLASS II	Dane	Map Link
+Story Creek	Story Creek [Tipperary]	5.71	12.54	CLASS II	Dane	Map Link
+Sugar River	Sugar River	82.33	91.86	CLASS II	Dane	Map Link
+Sugar River	Upper Sugar River	56.14	82.33	CLASS II	Dane,Green	Map Link
+Syftestad Creek	Syftestad Creek	0.00	5.16	CLASS II	Dane	Map Link
+Token Creek	Token Cr	3.44	7.25	CLASS II	Dane	Map Link
+Token Creek	Token Creek	2.95	3.44	CLASS III	Dane	Map Link
+Unnamed	Tributary to Token Creek	4.28	4.80	CLASS II	Dane	Map Link
+Vermont Creek	Vermont Creek	0.00	3.46	CLASS II	Dane	Map Link
+Vermont Creek	Vermont Creek	3.43	9.56	CLASS II	Dane	Map Link
+West Branch Sugar River	West Branch Sugar River	0.00	7.64	CLASS II	Dane	Map Link
+West Branch Sugar River	West Branch Sugar River	7.65	18.82	CLASS II	Dane	Map Link
+West Branch Sugar River	West Branch Sugar River	18.79	22.30	CLASS II	Dane	Map Link

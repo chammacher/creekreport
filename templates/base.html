@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<title>ComicDB</title>
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse">
+	<div class="container-fluid">		
+		<div class="navbar-header">
+			<a class="navbar-brand" href="{{url_for("home")}}"> HOME </a>
+		</div>
+		<ul class="nav navbar-nav">	
+			<li>
+				<form class="navbar-form navbar-left" role="search" method="get" action="{{url_for("home")}}">
+
+				<input type="text" class="form-control" name="q" value="">
+				<button type="submit" class="btn btn-default">
+					Search
+				</button>
+				</form>
+			<li>
+				<a href="{{url_for("advanced_search")}}"> 
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;Advanced Search &nbsp;&nbsp;
+	
+				 </a>
+			<li>	
+				<a href="{{url_for("add_comic")}}">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Add County
+				</a>
+            <li>
+                <a href="{{url_for("add_comic")}}">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Add Photos
+				</a>
+		</ul>
+	</div>
+	</nav>
+
+
+	<div class="header-row" id="header-row" style="padding: 0px; overflow:hidden; height:130px;">
+               <img src="http://www.trbimg.com/img-57bdb11f/turbine/sdut-lake-geneva-fall-colors-wisconsin-travel-2015jun11" alt="company logo" style="width: 100%;">
+	</div>
+
+
+
+
+	<div class="page">
+	{% block page_content %}{% endblock %}
+	</div>
+</body>
+</html>
