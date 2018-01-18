@@ -50,7 +50,7 @@ def add_comic():
     return render_template('add_comic.html')
 
 
-@app.route('/add')
+@app.route('/add1')
 def add_county():
     return render_template('add_county.html')
 
