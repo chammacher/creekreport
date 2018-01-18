@@ -3,8 +3,9 @@ import sqlite3 as sql
 import os
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = '/uploads/'
-ALLOWED_EXTENSIONS = set(['txt'])
+UPLOAD_FOLDER = './uploads/'
+ALLOWED_EXTENSIONS_COUNTY = set(['txt'])
+ALLOWED_EXTENSIONS_PHOTOS = set(['png', 'jpg', 'gif', 'jpeg'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -49,8 +50,17 @@ def add_comic():
     return render_template('add_comic.html')
 
 
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+@app.route('/add')
+def add_county():
+    return render_template('add_county.html')
+
+
+def allowed_file_county(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS_COUNTY
+
+
+def allowed_file_photo(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS_PHOTOS
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -66,12 +76,32 @@ def upload_file():
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
-        if file and allowed_file(file.filename):
+        if file and allowed_file_county(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
-    return
+            try:
+                with sql.connect("CreekList") as con:
+                    cur = con.cursor()
+                    with open(os.path.join(app.config['UPLOAD_FOLDER'], filename)) as f:
+                        for line in f:
+                            value_array = line.split('\t')
+                            name = value_array[0]
+                            start_mile = value_array[2]
+                            end_mile = value_array[3]
+                            cr_class = value_array[4]
+                            county = value_array[5]
+
+                            cur.execute("INSERT INTO CREEKLIST VALUES (?,?,?,?,?,?)",
+                                                (None, name, start_mile, end_mile, cr_class, county))
+
+                con.commit()
+                con.close()
+                return redirect(url_for("home"))
+            except:
+                return redirect(url_for("add_county"))
+
+    return redirect(url_for("add_county"))
+
 
 @app.route('/submit', methods=['POST'])
 def submit_add_comic():
