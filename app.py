@@ -1,5 +1,6 @@
 from flask import Flask, flash, render_template, request, redirect, url_for
 import sqlite3 as sql
+from sqlite3 import Error
 import os
 from werkzeug.utils import secure_filename
 
@@ -13,17 +14,18 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def home():
-    con = sql.connect("CreekList")
+    con = sql.connect("CreekList.db")
     con.row_factory = sql.Row
     cur = con.cursor()
 
     q = request.args.get('q', type=str)
+    print(q)
 
     if q is not None:
         q = '%' + q + '%'
-        cur.execute("SELECT COUNT(*) from CREEKLIST where NAME like ?", (q,))
+        cur.execute("SELECT COUNT(*) from CREEKLIST where name like ?", (q,))
         count = cur.fetchone()[0]
-        cur.execute("select * from CREEKLIST where NAME like ? limit 1000", (q,))
+        cur.execute("select * from CREEKLIST where name like ? limit 1000", (q,))
 
     else:
         cur.execute("SELECT COUNT(*) from CREEKLIST")
@@ -34,23 +36,23 @@ def home():
     return render_template('home.html', rows=rows, count=count, q=q)
 
 
-@app.route('/comic/<int:cid>')
-def comic(name):
-    con = sql.connect("CreekList")
+@app.route('/county/<int:ID>')
+def county(name):
+    con = sql.connect("CreekList.db")
     con.row_factory = sql.Row
     cur = con.cursor()
 
     cur.execute("select * from CREEKLIST where NAME = ?", (name,))
     row = cur.fetchone()
-    return render_template('comic.html', row=row)
+    return render_template('county.html', row=row)
 
 
-@app.route('/add')
+@app.route('/add/photo')
 def add_comic():
     return render_template('add_comic.html')
 
 
-@app.route('/add1')
+@app.route('/add/county')
 def add_county():
     return render_template('add_county.html')
 
@@ -80,10 +82,11 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             try:
-                with sql.connect("CreekList") as con:
+                print('made it this far')
+                with sql.connect("CreekList.db") as con:
                     cur = con.cursor()
                     with open(os.path.join(app.config['UPLOAD_FOLDER'], filename)) as f:
-                        for line in f:
+                        for index, line in enumerate(f):
                             value_array = line.split('\t')
                             name = value_array[0]
                             start_mile = value_array[2]
@@ -91,13 +94,13 @@ def upload_file():
                             cr_class = value_array[4]
                             county = value_array[5]
 
-                            cur.execute("INSERT INTO CREEKLIST VALUES (?,?,?,?,?,?)",
-                                                (None, name, start_mile, end_mile, cr_class, county))
+                            cur.execute("INSERT INTO CREEKLIST VALUES (?,?,?,?,?,?)", (None, name, start_mile, end_mile, cr_class, county))
 
-                con.commit()
+                    con.commit()
                 con.close()
                 return redirect(url_for("home"))
-            except:
+            except Error as e:
+                print(e)
                 return redirect(url_for("add_county"))
 
     return redirect(url_for("add_county"))
@@ -110,10 +113,12 @@ def submit_add_comic():
         creek_id = request.form['creek_id']
         picture = request.form['picture']
         date = request.form['date']
+        county = request.form['county']
+        description = request.form['description']
 
-        with sql.connect("CreekList") as con:
+        with sql.connect("CreekList.db") as con:
             cur = con.cursor()
-            cur.execute("INSERT INTO INFO VALUES (?,?,?,?,?)", (None, name, creek_id, picture, date))
+            cur.execute("INSERT INTO INFO VALUES (?,?,?,?,?)", (None, creek_id, name, picture, date, county, description))
         con.commit()
         con.close()
         return redirect(url_for("home"))

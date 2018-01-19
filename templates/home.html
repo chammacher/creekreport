@@ -15,13 +15,11 @@
 {% for row in rows %}
 	<tr>
 		<td>{{ row["ID"] }}</td>
-		<!--<td><a href="{{url_for('comic', name=row['name'])}}">{{ row["title"] }} </a></td>-->
         <td>{{ row["NAME"] }}</td>
 		<td>{{ row["START_MILE"] }}</td>
 		<td>{{ row["END_MILE"] }}</td>
 		<td>{{ row["CLASS"] }}</td>
         <td>{{ row["COUNTY"] }}</td>
-
 	</tr>
 {% endfor %}
 </table>
