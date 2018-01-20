@@ -1,0 +1,19 @@
+body{
+    background-color: lightgray;
+}
+.parallax {
+		/* The image used */
+		background-image: url("/static/central_wisconsin_streams.JPG");
+
+		/* Set a specific height */
+		height: 100%;
+
+		/* Create the parallax scrolling effect */
+		background-attachment: fixed;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+}
+.parallax-curtain{
+    background:rgba(255,255,255,0.8);
+}

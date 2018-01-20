@@ -2,27 +2,30 @@
 {% extends "base.html" %}
 {% block page_content %}
 
-<h3>The database currently contains {{count}} streams.</h3>
-<table class="table-striped table-bordered">
-	<thead>
-		<td>ID</td>
-		<td>Name</td>
-		<td>Start Mile</td>
-		<td>End Mile</td>
-		<td>Class</td>
-        <td>County</td>
-	</thead>
-{% for row in rows %}
-	<tr>
-		<td>{{ row["ID"] }}</td>
-        <td>{{ row["NAME"] }}</td>
-		<td>{{ row["START_MILE"] }}</td>
-		<td>{{ row["END_MILE"] }}</td>
-		<td>{{ row["CLASS"] }}</td>
-        <td>{{ row["COUNTY"] }}</td>
-	</tr>
-{% endfor %}
-</table>
-
+<div class="parallax">
+	<div class="parallax-curtain">
+	<h3>The database currently contains {{count}} streams.</h3>
+	<table class="table-striped table-bordered" style="font-size: 16px;">
+		<thead>
+			<td>ID</td>
+			<td>Name</td>
+			<td>Start Mile</td>
+			<td>End Mile</td>
+			<td>Class</td>
+			<td>County</td>
+		</thead>
+	{% for row in rows %}
+		<tr>
+			<td>{{ row["ID"] }}</td>
+			<td>{{ row["NAME"] }}</td>
+			<td>{{ row["START_MILE"] }}</td>
+			<td>{{ row["END_MILE"] }}</td>
+			<td>{{ row["CLASS"] }}</td>
+			<td>{{ row["COUNTY"] }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+</div>
+</div>
 {% endblock %}
 

@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-<h3 style="margin-left: 10px">ADD A COUNTY AND ALL OF ITS STREAMS ON THIS PAGE</h3>
-<div style="width:300px; border: 2px solid black; margin-left: 20px; padding:10px;">
-<form action="{{ url_for('upload_file') }}" method=post enctype=multipart/form-data>
-      <p><input type=file name=file><br>
-         <input type=submit value=Upload>
-</form>
+<div class="background" id="background-info" style="padding: 0px; overflow:hidden;">
+	<img src="/static/central_wisconsin_streams.JPG" alt="info_background" style="width: 100%;opacity: 0.2;position: absolute">
+    <h3 style="margin-left: 10px">ADD A COUNTY AND ALL OF ITS STREAMS ON THIS PAGE</h3>
+    <div style="width:300px; border: 2px solid black; margin-left: 20px; padding:10px;">
+        <form action="{{ url_for('upload_file') }}" method=post enctype=multipart/form-data>
+              <p><input type=file name=file><br>
+                 <input type=submit value=Upload>
+        </form>
+    </div>
 </div>
 {% endblock %}
