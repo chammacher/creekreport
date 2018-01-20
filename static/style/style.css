@@ -1,6 +1,10 @@
 body{
     background-color: lightgray;
 }
+
+h3{
+    margin-left: 10px;
+}
 .parallax {
 		/* The image used */
 		background-image: url("/static/central_wisconsin_streams.JPG");
@@ -17,3 +21,51 @@ body{
 .parallax-curtain{
     background:rgba(255,255,255,0.8);
 }
+
+.container{
+    border:1px solid black;
+    margin: 10px;
+    padding: 20px
+}
+
+.table-striped{
+    font-size: 16px;
+}
+
+.background{
+    padding: 0px;
+    overflow:hidden;
+}
+
+.add{
+    width:300px;
+    border: 2px solid black;
+    margin-left: 20px;
+    padding:10px;
+    opacity: 1;
+}
+
+#background-img-info{
+    width: 100%;
+    opacity: 0.6;
+    position: absolute;
+}
+
+#background-img-county{
+    width: 100%;
+    opacity: 0.2;
+    position: absolute;
+}
+
+#main_img{
+    width: 100%;
+}
+
+#header-row{
+    padding: 0px;
+    overflow:hidden;
+    height:180px;
+}
+
+
+

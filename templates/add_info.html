@@ -2,10 +2,10 @@
 
 {% block page_content %}
 
-<div class="background" id="background-info" style="padding: 0px; overflow:hidden;">
-	<img src="/static/info_background.png" alt="info_background" style="width: 100%;opacity: 0.6;position: absolute">
-	<h3 style="margin-left: 10px;">ADD INFO ABOUT CERTAIN STREAMS AND PHOTOS ON THIS PAGE</h3>
-	<div style="width:300px; border: 2px solid black; margin-left: 20px; padding:10px;">
+<div class="background" id="background-info">
+	<img id="background-img-info" src="/static/info_background.png" alt="info_background" >
+	<h3>ADD INFO ABOUT CERTAIN STREAMS AND PHOTOS ON THIS PAGE</h3>
+	<div class="add">
 		<form action="{{ url_for('submit_add_info') }}" method="POST" style="text-align:right;" enctype="multipart/form-data">
 			Name
 			<input type ="text" name="name" /><br><br>
