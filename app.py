@@ -19,7 +19,6 @@ def home():
     cur = con.cursor()
 
     q = request.args.get('q', type=str)
-    print(q)
 
     if q is not None:
         q = '%' + q + '%'
@@ -48,8 +47,8 @@ def county(name):
 
 
 @app.route('/add/photo')
-def add_comic():
-    return render_template('add_comic.html')
+def add_info():
+    return render_template('add_info.html')
 
 
 @app.route('/add/county')
@@ -82,7 +81,6 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             try:
-                print('made it this far')
                 with sql.connect("CreekList.db") as con:
                     cur = con.cursor()
                     with open(os.path.join(app.config['UPLOAD_FOLDER'], filename)) as f:
@@ -100,30 +98,43 @@ def upload_file():
                 con.close()
                 return redirect(url_for("home"))
             except Error as e:
-                print(e)
                 return redirect(url_for("add_county"))
 
     return redirect(url_for("add_county"))
 
 
-@app.route('/submit', methods=['POST'])
-def submit_add_comic():
-    try:
-        name = request.form['name']
-        creek_id = request.form['creek_id']
-        picture = request.form['picture']
-        date = request.form['date']
-        county = request.form['county']
-        description = request.form['description']
+@app.route('/submit', methods=['POST', 'GET'])
+def submit_add_info():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['picture']
+        # if user does not select file, browser also
+        # submit a empty part without filename
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file_photo(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            try:
+                name = request.form['name']
+                creek_id = request.form['creek_id']
+                picture = filename
+                date = request.form['date']
+                county = request.form['county']
+                description = request.form['description']
 
-        with sql.connect("CreekList.db") as con:
-            cur = con.cursor()
-            cur.execute("INSERT INTO INFO VALUES (?,?,?,?,?)", (None, creek_id, name, picture, date, county, description))
-        con.commit()
-        con.close()
-        return redirect(url_for("home"))
-    except:
-        return redirect(url_for("add_comic"))
+                with sql.connect("CreekList.db") as con:
+                    cur = con.cursor()
+                    cur.execute("INSERT INTO INFO VALUES (?,?,?,?,?)", (None, creek_id, name, picture, date, county, description))
+                con.commit()
+                con.close()
+                return redirect(url_for("home"))
+            except:
+                return redirect(url_for("add_info"))
 
 
 @app.route('/search')
