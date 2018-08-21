@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<style type="text/css">
+    .background {
+        background-image: url("/static/Advanced_Search_copy.jpg");
+        background-size: contain;
+        height: 100%;
+        width: 100%;
+    }
+</style>
+<div class="background" id="background-info">
+    <h3>SEARCH FOR A CREEK OR A DATE ON THIS PAGE</h3>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+         <ul class=flashes>
+        {% for message in messages %}
+         <li style="color: #ff0a14;font-size: 20px">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
+    <div class="add">
+        <form action="{{ url_for('advanced_search') }}" method="POST" style="text-align:right;" enctype="multipart/form-data">
+			<p class="f">Name</p>
+			<input type ="text" name="name" /><br><br>
+
+			<p class="f">Creek ID</p>
+			<input type="number" name="creek_id"/><br><br>
+
+			<p class="f">Date</p>
+			<input type="text" name="date" /><br><br>
+
+			<p class="f">Description</p>
+			<textarea name="description" style="height:150px;float: top"></textarea><br>
+
+			<input type="submit" value="submit" />
+		</form>
+    </div>
+
+</div>
+{% endblock %}

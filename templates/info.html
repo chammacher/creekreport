@@ -1,0 +1,28 @@
+
+{% extends "base.html" %}
+{% block page_content %}
+
+<div class="parallax2">
+	<div class="parallax-curtain">
+	<h3>Displaying {{count}} Results.</h3>
+	<table id="t01" class="table-striped table-bordered">
+		<thead>
+			<td>ID</td>
+			<td>Name</td>
+			<td>Date</td>
+			<td>Description</td>
+			<td>Picture</td>
+		</thead>
+	{% for row in rows %}
+		<tr>
+			<td>{{ row[0] }} </td>
+			<td>{{ row[1] }} </td>
+			<td>{{ row[2] }} </td>
+			<td>{{ row[3] }} </td>
+			<td>{{ row[4] }} </td>
+		</tr>
+	{% endfor %}
+	</table>
+</div>
+</div>
+{% endblock %}
