@@ -11,6 +11,8 @@ ALLOWED_EXTENSIONS_PHOTOS = set(['png', 'jpg', 'gif', 'jpeg'])
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+app.secret_key = b'chance'
+
 
 @app.route('/')
 def home():
@@ -69,14 +71,14 @@ def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
+            flash('No file Selected')
+            return redirect(url_for("add_county"))
         file = request.files['file']
         # if user does not select file, browser also
         # submit a empty part without filename
         if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
+            flash('No file selected')
+            return redirect(url_for("add_county"))
         if file and allowed_file_county(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
@@ -98,6 +100,7 @@ def upload_file():
                 con.close()
                 return redirect(url_for("home"))
             except Error as e:
+                flash('Text file of wrong format')
                 return redirect(url_for("add_county"))
 
     return redirect(url_for("add_county"))
@@ -106,40 +109,81 @@ def upload_file():
 @app.route('/submit', methods=['POST', 'GET'])
 def submit_add_info():
     if request.method == 'POST':
-        # check if the post request has the file part
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        file = request.files['picture']
-        # if user does not select file, browser also
-        # submit a empty part without filename
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if file and allowed_file_photo(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            try:
-                name = request.form['name']
-                creek_id = request.form['creek_id']
-                picture = filename
-                date = request.form['date']
-                county = request.form['county']
-                description = request.form['description']
+        try:
+            name = request.form['name']
 
-                with sql.connect("CreekList.db") as con:
-                    cur = con.cursor()
-                    cur.execute("INSERT INTO INFO VALUES (?,?,?,?,?)", (None, creek_id, name, picture, date, county, description))
-                con.commit()
-                con.close()
-                return redirect(url_for("home"))
-            except:
-                return redirect(url_for("add_info"))
+            creek_id = request.form['creek_id']
+            picture = ""
+            date = request.form['date']
+            description = request.form['description']
+
+            with sql.connect("CreekList.db") as con:
+                cur = con.cursor()
+                cur.execute("Select ID from CREEKLIST WHERE name like ?", (name,))
+                key = cur.fetchone()[0]
+                if creek_id is '':
+                    creek_id = key
+
+                cur.execute("INSERT INTO INFO VALUES (?,?,?,?,?,?)", (None, creek_id, name, picture, date, description,))
+            con.commit()
+            con.close()
+            return redirect(url_for("home"))
+        except:
+            flash('Not all fields selected')
+            return redirect(url_for("add_info"))
 
 
-@app.route('/search')
+@app.route('/search', methods=['POST', 'GET'])
 def advanced_search():
+    if request.method == 'POST':
+        try:
+            name = request.form['name']
+            creek_id = request.form['creek_id']
+            date = request.form['date']
+            description = request.form['description']
+
+            with sql.connect("CreekList.db") as con:
+                cur = con.cursor()
+                #print(cur.execute("PRAGMA table_info(INFO)").fetchall())
+                cur.execute(
+                    "SELECT COUNT(*) from INFO WHERE NAME like ? or DATE like ? or DESCRIPTION like ? or ID like ?",
+                    (name, date, description, creek_id))
+                count = cur.fetchone()[0]
+                cur.execute("SELECT ID, NAME, DATE, DESCRIPTION, PICTURE from INFO WHERE NAME like ? or DATE like ? or DESCRIPTION like ? or ID like ? LIMIT 1000",
+                            (name, date, description, creek_id))
+            rows = cur.fetchall()
+            #print(rows)
+            con.commit()
+            con.close()
+
+            return render_template('info.html', rows=rows, count=count, q=None)
+        except:
+            flash('No such item found')
+            return redirect(url_for("advanced_search"))
     return render_template('advanced_search.html')
+
+
+@app.route('/search1', methods=['GET'])
+def advanced_search_home():
+    name = request.args.get('name')
+    creek_id = request.args.get('creek_id')
+    try:
+        with sql.connect("CreekList.db") as con:
+            cur = con.cursor()
+            #print(cur.execute("PRAGMA table_info(INFO)").fetchall())
+            cur.execute("SELECT COUNT(*) from INFO WHERE NAME like ? or ID like ?", (name, creek_id))
+            count = cur.fetchone()[0]
+            cur.execute("SELECT ID, NAME, DATE, DESCRIPTION, PICTURE from INFO WHERE NAME like ? or ID like ? LIMIT 1000",
+                            (name, creek_id))
+        rows = cur.fetchall()
+        #print(rows)
+        con.commit()
+        con.close()
+
+        return render_template('info.html', rows=rows, count=count, q=None)
+    except:
+        flash('No such item found')
+        return redirect(url_for("home"))
 
 
 if __name__ == '__main__':

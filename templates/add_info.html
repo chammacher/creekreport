@@ -1,10 +1,23 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-
+<style type="text/css">
+    .background {
+        background-image: url("/static/info_background.png");
+    }
+</style>
 <div class="background" id="background-info">
-	<img id="background-img-info" src="/static/info_background.png" alt="info_background" >
 	<h3>ADD INFO ABOUT CERTAIN STREAMS AND PHOTOS ON THIS PAGE</h3>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+         <ul class=flashes>
+        {% for message in messages %}
+         <li style="color: #ff0a14;font-size: 20px">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
 	<div class="add">
 		<form action="{{ url_for('submit_add_info') }}" method="POST" style="text-align:right;" enctype="multipart/form-data">
 			Name
@@ -16,14 +29,10 @@
 			Date
 			<input type="text" name="date" /><br><br>
 
-			County
-			<input type="text" name="county" /><br><br>
-
 			Description
 			<textarea name="description" style="height:150px;float: top"></textarea><br>
 
 			<br>
-			Picture
 			<input type="file" name=picture style="width:100%"/><br><br>
 
 			<input type="submit" value="submit" />

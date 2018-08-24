@@ -1,14 +1,29 @@
 {% extends "base.html" %}
 
 {% block page_content %}
+<style type="text/css">
+    .background {
+        background-image: url("/static/central_wisconsin_streams.JPG");
+    }
+</style>
 <div class="background" id="background-info">
-	<img id="background-img-county" src="/static/central_wisconsin_streams.JPG" alt="info_background">
     <h3>ADD A COUNTY AND ALL OF ITS STREAMS ON THIS PAGE</h3>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+         <ul class=flashes>
+        {% for message in messages %}
+         <li style="color: #ff0a14;font-size: 20px">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
     <div class="add">
         <form action="{{ url_for('upload_file') }}" method=post enctype=multipart/form-data>
               <p><input type=file name=file><br>
                  <input type=submit value=Upload>
         </form>
     </div>
+
 </div>
 {% endblock %}

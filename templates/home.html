@@ -15,7 +15,7 @@
 			<td>County</td>
 		</thead>
 	{% for row in rows %}
-		<tr>
+		<tr class="clickable-row" data-href="{{ url_for('advanced_search_home', name=row['NAME'], creek_id=row['ID']) }}">
 			<td>{{ row["ID"] }}</td>
 			<td>{{ row["NAME"] }}</td>
 			<td>{{ row["START_MILE"] }}</td>
@@ -27,5 +27,12 @@
 	</table>
 </div>
 </div>
+<script>
+jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+</script>
 {% endblock %}
 
